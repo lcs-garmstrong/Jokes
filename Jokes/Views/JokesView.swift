@@ -87,6 +87,9 @@ struct JokesView: View {
                 }, label: {
                     Text("Save for later")
                 })
+                // disable button until punchine is shown.
+                .disabled(punchlineOpacity == 0.0 ? true : false)
+                .tint(.green)
                 .buttonStyle(.borderedProminent)
                 
             }
