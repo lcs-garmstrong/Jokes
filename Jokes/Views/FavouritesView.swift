@@ -5,16 +5,36 @@
 //  Created by Graeme Armstrong on 2023-04-18.
 //
 
+import Blackbird
 import SwiftUI
 
 struct FavouritesView: View {
+    
+    // MARK: Stored properties
+    
+    @BlackbirdLiveModels({ db in
+        try await Joke.read(from: db)
+    }) var favouriteJoke
+    
+    // MARK: computed properties
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List(favouriteJoke.results) { currentJoke in
+                VStack(alignment: .leading) {
+                    Text(currentJoke.setup)
+                        .bold()
+                    Text(currentJoke.punchline)
+                }
+            }
+            .navigationTitle("Favourites")
+        }
     }
 }
 
 struct FavouritesView_Previews: PreviewProvider {
     static var previews: some View {
         FavouritesView()
+        // make the database available for this preview
+            .environment(\.blackbirdDatabase, AppDatabase.instance)
     }
 }
