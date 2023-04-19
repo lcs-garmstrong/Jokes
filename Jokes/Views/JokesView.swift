@@ -97,7 +97,9 @@ struct JokesView: View {
         }
         // create an asynchronous ask to be preformed as this viewappears
         .task {
-            currentJoke = await NetworkService.fetch()
+            if currentJoke == nil {
+                currentJoke = await NetworkService.fetch()
+            }
         }
     }
 }
