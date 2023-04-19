@@ -105,7 +105,7 @@ struct JokesView: View {
                 .buttonStyle(.borderedProminent)
                 
             }
-            .navigationTitle("Random Jokes")
+            .navigationTitle("Fresh Jokes")
         }
         // create an asynchronous ask to be preformed as this viewappears
         .task {
